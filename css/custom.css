@@ -1,0 +1,57 @@
+/* 1. 全局背景图优化 */
+body {
+  /* 背景图固定、居中、铺满 */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* 2. 给页面内容加毛玻璃容器 */
+#page-container {
+  /* 半透明背景，配合毛玻璃 */
+  background: rgba(255, 255, 255, 0.15);
+  /* 核心：毛玻璃效果 */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* 兼容Safari */
+  /* 圆角和阴影，增加精致感 */
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  /* 内边距微调，避免内容贴边 */
+  padding: 1rem;
+}
+
+/* 3. 首页Banner渐变遮罩（文字更清晰） */
+#page-header.full_page {
+  position: relative;
+}
+#page-header.full_page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* 从上到下的半透明黑渐变，文字会更清晰 */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  z-index: 1;
+}
+/* 让Banner里的文字层级高于遮罩 */
+#page-header.full_page .full_page-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* 4. 优化文章页/列表页的内容背景 */
+#article-container, #aside-content {
+  background: rgba(255, 255, 255, 0.75) !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
